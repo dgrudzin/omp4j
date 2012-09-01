@@ -1,0 +1,17 @@
+#!/bin/bash
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv false size=10000 numThreads=2 maxTasks=10 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=50 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=100 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=200 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=300 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=400 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=500 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=1000 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=1500 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=2000 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=10000 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=5000 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=7000 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=10000 tied=false
+java -server -Xms4000M -Xmx4000M  -XX:+UseParallelGC -cp ./omp4j.jar ru.unn.omp4j.examples.ExampleRunner ru.unn.omp4j.examples.ParallelListTraversal 3 ./UntiedUntiedParallelList.csv true size=10000 numThreads=2 maxTasks=15000 tied=false
+

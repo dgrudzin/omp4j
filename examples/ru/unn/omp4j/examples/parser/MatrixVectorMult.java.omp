@@ -1,0 +1,27 @@
+package ru.unn.omp4j.examples.parser;
+
+import ru.unn.omp4j.OMPRuntime;
+import ru.unn.omp4j.examples.ExampleUtils;
+
+public class MatrixVectorMult {
+    public static void main(String[] args) {
+        final int n = Integer.valueOf(args[0]);
+
+        final double[] matrix = ExampleUtils.createRandomMatrix(n);
+        final double[] vector = ExampleUtils.createRandomVector(n);
+
+        final double[] result = new double[vector.length];
+
+        //omp parallel num_threads(2)
+        {
+            System.out.println("I am thread " + OMPRuntime.getThreadNum());
+            
+            //omp for schedule(dynamic)
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < vector.length; j++) {
+                    result[i] += matrix[i * vector.length + j] * vector[j];
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,133 @@
+<project name="OMP4J" basedir="." default="rebuildAll">
+
+	<property name="src.dir" location="src" />
+	<property name="examples.dir" location="examples" />
+	<property name="test.src.dir" location="test" />
+	<property name="test.build.dir" location="test-build" />
+	<property name="test.report.dir" location="test-report" />
+	<property name="build.dir" location="build" />
+	<property name="dist.dir" location="dist" />
+	<property name="lib.dir" location="lib" />
+	<property name="conf.dir" location="./conf" />
+	<property name="doc.dir" location="./docs/javadoc" />
+	<property name="main.class" value="" />
+	<property name="dist.jar" value="omp4j.jar" />
+
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${conf.dir}" />
+		<pathelement location="${dist.jar}" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${test.build.dir}" />
+		<delete dir="${test.report.dir}" />
+		<delete file="${lib.dir}/${dist.jar}" />
+		<delete dir="./bin" />
+		<delete dir="./log" />
+		<delete dir="${doc.dir}" />
+	</target>
+
+	<target name="build">
+
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" target="1.6">
+			<classpath>
+				<path id="classpath">
+					<fileset dir="${lib.dir}">
+						<include name="**/*.jar" />
+					</fileset>
+				</path>
+			</classpath>
+		</javac>
+		<javac srcdir="${examples.dir}" destdir="${build.dir}" target="1.6">
+			<classpath>
+				<path id="classpath">
+					<fileset dir="${lib.dir}">
+						<include name="**/*.jar" />
+					</fileset>
+				</path>
+			</classpath>
+		</javac>
+	</target>
+
+
+	<target name="test">
+		<mkdir dir="${test.build.dir}" />
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" target="1.6">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<pathelement location="${test.build.dir}" />
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<mkdir dir="${test.report.dir}" />
+		<junit haltonerror="false" haltonfailure="false" printsummary="true">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<pathelement location="${test.build.dir}" />
+				<path id="classpath">
+					<fileset dir="lib">
+						<include name="**/*.jar" />
+					</fileset>
+				</path>
+			</classpath>
+			<batchtest todir="${test.build.dir}">
+				<fileset dir="${test.build.dir}">
+					<include name="**/CtSuite*" />
+				</fileset>
+			</batchtest>
+			<formatter type="xml" usefile="true" />
+		</junit>
+		<junitreport todir="${test.report.dir}">
+			<fileset dir="${test.build.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${test.report.dir}/html" />
+		</junitreport>
+	</target>
+
+	<target name="rebuildAll" depends="clean, build" />
+	<target name="rebuildAllRunTests" depends="rebuildAll, test" />
+
+	<target name="dist" depends="jar">
+		<mkdir dir="${dist.dir}" />
+		<copy todir="${dist.dir}">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+				<exclude name="hamcrest-core-1.1.jar" />
+				<exclude name="hamcrest-library-1.1.jar" />
+				<exclude name="jmock-2.5.1.jar" />
+				<exclude name="jmock-junit4-2.5.1.jar" />
+				<exclude name="junit-4.8.1.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.dir}" file="${conf.dir}/omp-log4j.xml" />
+	</target>
+
+	<target name="jar" depends="build">
+		<pathconvert property="mf.classpath" pathsep=" ">
+			<path refid="project.classpath" />
+			<flattenmapper />
+		</pathconvert>
+		<jar destfile="${lib.dir}/${dist.jar}" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}" />
+				<attribute name="Class-Path" value="${mf.classpath}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="javadoc">
+		<mkdir dir="${doc.dir}" />
+		<javadoc sourcefiles="src/ru/unn/omp4j/OMPDirectives.java,src/ru/unn/omp4j/OMPRuntime.java,
+			src/ru/unn/omp4j/parser/OMPParser.java,src/ru/unn/omp4j/parser/OMPParserException.java" 
+			destdir="${doc.dir}"/>
+	</target>
+</project>
